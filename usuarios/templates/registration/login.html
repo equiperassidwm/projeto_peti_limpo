@@ -1,0 +1,57 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/css.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/login.css' %}">
+{% endblock 'head' %}
+
+{% block 'content' %}
+
+<div class="d-flex flex-md-row flex-column w-100">
+    <div class="min-height-100  d-flex flex-column justify-content-center w-30" >
+        <h1 class="fs-2 text-center text-white" style="margin-top: 7rem;">Bem vindo de Volta</h1>
+        <div class="text-center">
+            <img src="{% static 'usuarios/img/dog.png' %}" alt="">
+            <img src="{% static 'usuarios/img/cat.png' %}" alt="">
+        </div>
+    </div>
+    <div class="container px-2 d-flex flex-column justify-content-center my-5">
+        <br><br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        
+        <div id="campoLogin" class="form d-flex flex-md-row flex-column">
+            <form style="box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.25);" action="{% url 'user_login' %}" method="POST"> {% csrf_token %}
+            <div class="texto-inicial">
+                <h1>Acesse sua conta agora <br> mesmo</h1>
+            </div>
+          
+            <div  class="campos">
+                <div class="inputs">
+                    <img class="img" src="{% static 'usuarios/img/icone-usuario.svg' %}" alt="icone-usuario">
+                    <input required id="usuario" type="text" name="usuario" placeholder="Usuário">
+
+                </div>
+                <div class="inputs">
+                    <img class="img"src="{% static 'usuarios/img/icone-senha.svg' %}" alt="icone-senha">
+                    <input required id="senha" type="password" name="senha" placeholder="Senha">
+
+                </div>
+                <div class="esqueci-senha text-center">
+                    <a href="{% url 'password_reset' %}">Esqueci minha senha </a>
+                </div>
+            </div>
+            <br>
+            <button class="btn" type="submit">Entrar</button>
+            <div class="registro">
+                <p>Não tem uma conta?<a href="{% url 'cadastro' %}">Registre-se</a></p>
+            </div>
+            </form>
+        </div>      
+    </div>  
+</div>            
+{% endblock %}

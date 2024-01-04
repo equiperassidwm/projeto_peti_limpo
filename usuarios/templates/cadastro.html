@@ -1,0 +1,115 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+
+    <link rel="stylesheet" href="{% static 'usuarios/css/cadastro.css' %}">
+{% endblock 'head' %}
+
+{% block 'content' %}
+
+    <div class="container py-5 px-2">
+        <h1 style="text-align: center; margin: 7rem 0 0 0;">Cadastro de Cliente</h1>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <form id="form-cadastro" action="{% url 'cadastro' %}"  method="POST"> {% csrf_token %}
+            <section class="campo">
+                <h2>Dados Pessoais</h2>
+                <div class="dpessoais">
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/nome.svg' %}" alt=""><input required  type="text" name="nome" id="nome" value="{{ form_user.instance.first_name }}"  placeholder="Nome">
+                        </div>
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="cpf" id="cpf" value="{{ form_user.instance.cpf.value }}"  placeholder="CPF">
+                        </div>
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="email" name="email" id="email" value="{{ form_user.instance.email.value }}" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/nome.svg' %}" alt=""><input required  type="text" name="sobre_nome" id="sobre_nome" value="{{ form_user.instance.last_name.value }}" placeholder="Sobre Nome">
+                        </div>
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/telefone.svg' %}" alt=""><input required type="text" name="telefone" id="telefone" value="{{ form_user.instance.telefone.value }}" placeholder="Telefone">
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Endereço</h2>
+                <div class="dendereco">
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="cep" id="cep" name="cep" value="{{ form_endereco.instance.cep.value }}" placeholder="CEP" onblur="buscarCEP()">
+                        </div>
+                     
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input type="text" id="complemento" name="complemento" value="{{ form_endereco.instance.complemento.value }}"  placeholder="Complemento">
+                        </div>
+
+                    </div>
+                    <div class="inputs-container">
+                       
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="logradouro" id="logradouro" value="{{ form_endereco.instance.logradouro.value }}" placeholder="Logradouro">
+                        </div>
+                      
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="bairro" id="bairro" value="{{ form_endereco.instance.bairro.value }}"  placeholder="Bairro">
+                        </div>
+                    </div>
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="cidade" id="cidade" value="{{ form_endereco.instance.cidade.value }}"  placeholder="Cidade">
+                        </div>
+                    </div>
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/carta.svg' %}" alt=""><input required type="text" name="uf" id="uf" value="{{ form_endereco.instance.uf.value }}" size="14" placeholder="UF">
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Senha</h2>
+                <div class="dsenha">
+                    <div class="inputs-container">
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/icone-usuario.svg' %}" alt=""><input type="text" name="usuario" id="usuario" value="{{ form_user.instance.username.value }}" placeholder="Nome de Usuário">
+                        </div>
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/senha.svg' %}" alt=""><input type="password" name="senha" id="criesuasenha" value="{{ form_user.instance.password.value }}" placeholder="Crie sua Senha">
+                        </div>
+                        <div class="wraper-input">
+                            <img class="img" src="{% static 'usuarios/img/senha.svg' %}" alt=""><input type="password" name="confirmar_senha" id="confirmarsenha" value="{{ form_user.confirmar_senha.value }}" placeholder="Confirme sua Senha">
+                        </div>  
+                    </div>
+                </div>
+             
+            </section>
+            <div class="botao"><input class="enviar" type="submit" value="Cadastrar"></div>
+        </form>
+
+        <div class="modal-pop">
+            <div class="pop-up">
+                <p>CADASTRO REALIZADO COM SUCESSO!</p>
+                <button id="ok-pop">OK</button>
+            </div>
+        </div>
+     
+        
+    </div>
+
+
+{% endblock %}
+
+{% block 'scripts' %}
+   <script src="{% static 'usuarios/js/cep.js' %}"></script> 
+   <script src="{% static 'usuarios/js/mascara.js' %}"></script>
+   <script src="{% static 'usuarios/js/jquery.mask.js' %}"></script>
+{% endblock 'scripts' %}
+

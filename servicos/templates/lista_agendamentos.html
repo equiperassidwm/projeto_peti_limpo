@@ -1,0 +1,43 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'servicos/css/lista-agendamentos.css' %}">
+{% endblock 'head' %}
+
+{% block 'content' %}
+<br><br><br><br><br><br>
+<h1 class="text-center my-3">Meus Agendamentos</h1>
+<br>
+<div class="container" style="margin-bottom: 20rem">
+    <table class="table table-bordered table-striped text-center">
+        <tr>
+            <th scope="col">Usuário</th>
+            <th scope="col">Nome do Animal</th>
+            <th scope="col">Tipo do Animal</th>
+            <th scope="col">Tipo Do Serviço</th>
+            <th scope="col">Preco Unitário</th>
+            <th scope="col">Porte do Animal</th>
+            <th scope="col">Possue Alergia</th>
+            <th scope="col">Qual</th>
+            <th scope="col">data_agendamento</th>
+        </tr>
+    
+        
+        {% for agendamento in agendamentos %}
+            <tr>
+                <td>{{ agendamento.usuario_id }}</td>
+                <td>{{ agendamento.animal.nome}}</td>
+                <td>{{ agendamento.animal.tipo }}</td>
+                <td>{{ agendamento.tipo_servico_id.nome }}</td>
+                <td>{{ agendamento.preco_id.preco }}</td>
+                <td>{{ agendamento.porte_animal_id.tipo }}</td>
+                <td>{{ agendamento.animal.possui_alergia }}</td>
+                <td>{{ agendamento.animal.qual_alergia }}</td>
+                <td>{{ agendamento.get_data_agendamento }}</td>
+            </tr>      
+        {% endfor %}
+      
+    </table>
+</div>
+{% endblock%}

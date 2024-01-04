@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Limpo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'geral/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'geral/css/base-home.css' %}">
+
+    {% block 'head' %} {% endblock 'head' %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'core/img/logo-pet-limpo-recortado.png' %}" alt="logo">
+            </div>
+            <nav class="desktop-menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}#sobre">Sobre</a></li>
+                    <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                    <li><a href="{% url 'user_login' %}">Login</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'solicitacao_agendamento' %}">Agendar</a></li>
+                        <li><a href="{% url 'lista_agendamentos' %}">Meus Agendamentos</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <nav class="mobile-menu">
+                <i class="fa-solid fa-bars menu" ></i>
+                <ul class="itens-menu fechado">
+                    <i class="fa-solid fa-bars menu" id="menu-d"></i>
+                    <div class="wraper-ul">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'home' %}#sobre">Sobre</a></li>
+                        <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'solicitacao_agendamento' %}">Agendar</a></li>
+                            <li><a href="{% url 'lista_agendamentos' %}">Meus Agendamentos</a></li>
+                        {% endif %}
+                    </div>
+                </ul>
+            </nav>
+            
+        </div>
+        {% if user.is_authenticated %}
+            <div class="d-flex flex-md-row flex-column justify-content-md-between">
+                <p class="mx-5 text-white login-user">Seja Bem vindo, {{ user.username }}!</p>
+                <a class="text-white logout mx-5 text-center" href="{% url 'deslogar' %}">Logout</a>
+            </div>
+        {% endif %}
+    </header>
+   
+    {% block 'content' %}
+    
+    {% endblock %}
+    <footer>
+        <div class="container-contato">
+            <div class="contato">
+                <p><img src="{% static 'core/img/tel.svg' %}" alt="Telefone"><a href="">Telefone: 62 3546-6832</a></p>
+                <p><img src="{% static 'core/img/email.svg' %}" alt="Email"><a href="">Email: petlimpo@gmail.com</a></p>
+            </div>
+            <div class="rede-sociais">
+                <img src="{% static 'core/img/instagram.svg' %}" alt="Instagram"><a href="">petlimpo</a>
+            </div>
+        </div>
+
+        <div class="direitos-reservados">
+            <p> &copy;Copyright     2023 Todos os direitos reservado </p>
+        </div>
+    </footer>
+    
+    <script src="{% static 'geral/js/jquery.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/0ca201c7fe.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{% static 'geral/js/menu.js' %}"></script>
+    {% block 'scripts' %}{% endblock 'scripts' %}
+</body>
+</html>

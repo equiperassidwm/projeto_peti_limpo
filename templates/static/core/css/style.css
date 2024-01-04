@@ -1,0 +1,202 @@
+main{
+    background: linear-gradient(180deg, #D3E1ED 0%, #FFFFFF 100%);
+    
+}
+
+/* banner */
+.banner {
+  background-color: #dfdfdd; 
+}
+
+.fundo{
+    width: 100%;
+    background: rgba(252, 9, 9, 0.486) url("../img/3730301_73977.jpg") no-repeat right top;
+    background-size: contain;
+    background-position: top;
+    background-color: #dfdfdd;
+    text-align: center;
+    padding: 19% 0;
+}
+
+.overley{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.banner p{
+    font-size: 60px;
+    font-family:'Playball';
+    color: #006BC1; 
+    background-color: #dfdfdd;
+    text-align: center;
+    padding: 194px 0 0 0;
+    
+}
+/* fim banner */
+
+
+/* galeria */
+.galeria{
+    margin: 200px 0 50px 0;
+    
+}
+
+h2{
+    text-align: center;
+    font-size: 50px;
+    color: var(--azul);
+    font-family: 'my coffee break';
+    margin-bottom: 40px;
+}
+
+.carrossel{
+    background-color: white;
+    padding: 20px 2%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.imagem_carrossel{
+    width: 30%;
+    padding-top: 20%;
+    background-color: #ccc;
+}
+/* fim galeria */
+
+
+/* carrosel */
+.carousel {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-container {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .slide-group {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .slide {
+    width: 33.33%; /* Cada imagem ocupará 33.33% da largura do slide-group */
+    flex-shrink: 0;
+  }
+
+  
+  
+  .btnED {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+
+  .btnED:hover {
+    transform: translateY(-50%) scale(1.3);
+  }
+  
+  .prev {
+    left: 0;    
+  }
+  
+  .next {
+    right: 0;
+  }
+  
+  /* fim carrossel */
+
+  /* sobre e localização */
+
+  .sobre{
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  .sobre i{
+    font-size: 40px;
+    color: #c4c1af;
+    text-shadow: 1px 1px 1px black;
+  }
+
+  .sobre h4{
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px 0;
+  }
+
+  .sobre p{
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .wraper-sobre{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .card-sobre{
+    text-align: center;
+    width: 30%;
+    box-shadow: 0px 0px 45px 0px rgba(225, 225, 225, 0.5);
+    padding:30px 30px 60px 30px;
+    background-color: whitesmoke;
+    transition: 0.5s;
+  }
+
+  .card-sobre:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+  }
+
+  .localizacao{
+    padding: 0 2%;
+  }
+
+  .localizacao .container{
+    display: flex;
+  }
+
+  .localizacao .mapa{
+    width: 100%;
+    max-width: 1200px;
+    padding-top: 25%;
+    position: relative;
+    margin: 50px auto;
+  }
+
+  .contato-mapa{
+    margin: 100px auto;
+    font-size: 20px;
+    line-height: 35px;
+    width: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .localizacao .mapa iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* fim sobre e localização */

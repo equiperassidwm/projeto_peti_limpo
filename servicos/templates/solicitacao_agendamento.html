@@ -1,0 +1,132 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'servicos/css/css.css' %}">
+{% endblock 'head' %}
+
+{% block 'content' %}
+<br><br><br><br><br>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>  
+    {% endfor %}
+{% endif %}
+<div class="container">
+    <div class="row d-flex justify-content-around" style="margin: 0 auto;">
+        <div class="col-md-5 col-12 p-5" style="margin-top: 4rem; box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.25); padding: 1rem;">
+            <h3 class="font-destaque">Solicitação de Agendamento de Serviços</h3>
+            <hr>
+            <form action="{% url 'solicitacao_agendamento' %}" method="POST"> {% csrf_token %}
+                <label for="">Selecione o tipo de serviço</label>
+                <select class="select form-control bg-select" multiple name="servicos">
+                {% for servico in  tipo_servico %}
+                    <option class="opt" value="{{ servico.id }}">{{ servico.nome }}</option> /*o que vai para o banco de dados é o (exame.id)*/
+                {% endfor %}        
+                </select>
+                <hr>
+                <label for="">Selecione o Porte do Animal</label>
+                <select class="select form-control bg-select input"  name="porte">
+                    {% for porte in  porte_animal %}
+                        <option class="input" value="{{ porte.id }}">{{ porte.tipo }}</option> /*o que vai para o banco de dados é o (porte.id)*/
+                    {% endfor %}        
+                </select>
+              
+                
+                <label for="nome_animal">Nome do Animal</label>
+                <input type="text" class="form-control input" id="nome_animal" name="nome_animal">
+                <label for="tipo_animal">Tipo do Animal</label>
+                <input type="text" class="form-control input" id="tipo_animal" name="tipo_animal">
+                <hr>
+                <label>Possui Alergia?</label>
+                <label for="opcao_sim">Sim</label>
+                <input type="radio" id="opcao_sim" name="opcao" value="Sim">
+                <label for="opcao_nao">Não</label>
+                <input type="radio" id="opcao_nao" name="opcao" value="Não">
+                <br>
+                <label for="tipo_alergia">Qual?</label>
+                <input type="text" class="form-control mb-2 input" id="tipo_alergia" name="alergia">
+                <label for="data_agendamento">Data do Agendamento</label>
+                <input type="datetime-local" class="form-control mb-2 input" id="data_agendamento" name="data_agendamento">
+                <br>
+                <input type="submit" class="btn-default" style="width: 50%;" value="Solicitar Agendamento">
+            </form>
+        </div>
+     
+        <div class="col-md-5 col-12 p-5" style="margin-top: 4rem; padding: 1rem; box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.25);">
+            
+            <h3 class="font-destaque">Confirmação do Agendamento</h3>
+            <hr>
+            <div class="dados-gerais">
+                <p>Usuário Solicitante: {{ usuario }}</p>
+                <br>
+                <h5>Dados do Animal</h5>
+                <p>Nome do Animal: {{ nome_animal}}</p>    
+               
+                <p>Tipo do Animal: {{ tipo_animal }}</p>    
+              
+                <p>Porte do Animal: {{ porte }}</p>
+               
+                <p>Possui Alergia: {{ possui_alergia }}</p>
+              
+                <p>Qual? {{ qual }}</p>
+            
+                <hr>
+                <h5>Tipo de Serviços Selecionados</h5>
+                {% if solicitacao_tipo_servico %}
+                    {% for tipo in solicitacao_tipo_servico %}
+                        <div class="">
+                            {% if tipo.disponivel %}
+                                <img src="{% static 'servicos/img/check.png' %}" alt="Serviço Disponível">
+                            {% else %}
+                                <img src="{% static 'servicos/img/exit.png' %}" alt="Seviço Indisponível">
+                            {% endif %}
+                
+                            <span>{{ tipo.nome }}</span>
+                            {% for preco in precos %}
+                                {% if preco.tipo_servico == tipo %}
+                                    <span class="mx-5">{{ preco.preco }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <br>
+                    </div>
+                    {% if data_agendamento %}
+                        <span>Data do Agendamento: {{ data_agendamento }}</span>
+                    {% endif %}
+                    <hr>
+                    <div>
+                        <label>Total: </label><label>R${{ preco_total }}</label>
+                    </div>
+                    <br>
+                    <form action="{% url 'concluir_agendamento' %}" method="POST"> {% csrf_token %}
+                        <input type="hidden" value="{{ usuario }}" name="usuario">
+                        <input type="hidden" value="{{ nome_animal }}" name="nome_animal">
+                        <input type="hidden" value="{{ tipo_animal }}" name="tipo_animal">
+                        <input type="hidden" value="{{ porte.id }}" name="porte_animal">
+                        <input type="hidden" value="{{ possui_alergia }}" name="possui_alergia">
+                        <input type="hidden" value="{{ qual }}" name="qual">
+
+                        {% for tipo in solicitacao_tipo_servico %}
+                            {% if tipo.disponivel %}
+                                <input type="hidden" value="{{ tipo.id }}" name="tipo_servico">
+                            {% endif %}
+                            
+                        {% endfor %}
+
+                        {% for preco in precos %}
+                            <input type="hidden" value="{{ preco.id }}" name="preco">
+                        {% endfor %}
+                        <input type="hidden" value="{{ data_agendamento }}" name="data_agendamento">
+                        <button class="btn-default" style="width: 50%;">Confirmar Agendamento</button>
+                        
+                    </form>
+                {% else %}
+                    <h3>Nenhum Tipo de Serviço selecionado</h3>  
+                {% endif %}
+        </div>
+    </div>    
+</div>
+<br><br>
+{% endblock %}

@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Patua One';
+}
+
+:root{
+    --azul: #4786B7;
+    --cinza: #DEE2ED;
+}
+
+
+.container{
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+
+
+h1{
+    font-size: 40px;
+}
+
+h2{
+    text-align: left;
+    margin: 10px 0 0 8%;
+    font-size: 32px;
+    
+}
+.campo{
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 2%;
+    margin: 30px auto;
+}
+
+.dpessoais, .dendereco, .dsenha{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputs-container{
+    width: 50%;
+}
+
+.campo input{
+    width: 80%;
+    margin-top:15px  ; 
+    background: #D3E1ED; 
+    height: 60px;
+    border: #D3E1ED;
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
+    outline: 0; 
+    font-size: 19px;
+}
+
+.img{
+    position: relative;
+    top: -2.4px;
+    height: 60px;
+    width: 10%;
+    background: #D3E1ED;
+    padding: 12px;
+    border-bottom-left-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+
+
+
+.botao{
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+    
+}
+.enviar{
+    max-width: 500px;
+    width: 100%;
+    padding: 10px;
+    display: block;
+    background: #006BC1;
+    color: white;
+    margin:50px auto;
+    border-radius: 15px;
+    border: 1px solid #006BC1;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.enviar:hover{
+    background-color: transparent;
+    color: #006BC1;
+    transition: 0.3s;
+}
+
+.modal-pop{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.534);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.pop-up{
+    background-color: white;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    color: #006BC1;
+    font-size: 20px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.pop-up button{
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1FFC0C;
+    color: white;
+    cursor: pointer;
+    border: 0;
+}
+
+@media screen and (max-width:768px){
+    .inputs-container{
+        width: 100%;
+    }
+}
+

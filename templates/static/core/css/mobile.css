@@ -1,0 +1,49 @@
+@media screen and (max-width: 768px) {
+    .banner .container{
+        text-align: center;
+    }
+
+    .banner .container img{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .banner .container p{
+        width: 100%;
+    }
+    
+      .card-sobre{
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+    
+}
+
+
+@media screen and (max-width: 1024px){
+    .sobre-localizacao > .container{
+        display: flex;
+        flex-wrap: wrap;
+        }
+    
+    
+    .sobre-localizacao .sobre{
+    width: 100%;
+    }
+
+    .sobre-localizacao .localizacao{
+    width: 100%;
+    margin-top: 50px;
+    }
+
+    .mapa iframe{
+    width: 100%;
+    }
+
+    .slide {
+        width: 100%; /* Cada imagem ocupará 100% da largura do slide-group */
+    }
+
+}

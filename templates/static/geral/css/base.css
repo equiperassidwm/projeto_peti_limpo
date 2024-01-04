@@ -1,0 +1,41 @@
+:root {
+    --blue-color:  #006BC1;
+    --input-color: #D3E1ED;
+    --background-color: #FDFEFD;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.titulo-principal {
+    color: var(--blue-color);
+}
+
+.input-default {
+    background: var(--input-color);
+    border: none;
+    padding: .5rem;
+  
+}
+
+label {
+  
+    margin-left: 1rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.btn-default {
+    color: rgb(238, 233, 233);
+    background: var(--blue-color);
+    border: none;
+    border-radius: 30px;
+    width: 15%;
+    padding: .7rem;
+    
+}
