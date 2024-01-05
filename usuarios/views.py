@@ -46,7 +46,7 @@ def cadastro(request):
 
 
 
-def cadastro(request):
+'''def cadastro(request):
     if request.method == 'GET':
         return render(request, 'cadastro.html')
 
@@ -116,7 +116,7 @@ def cadastro(request):
         except IntegrityError as e:
             messages.add_message(request, constants.ERROR, f'{str(e)} Erro ao cadastrar o Usuário ou o Endereço!')
             return redirect('/usuarios/cadastro')
-         
+         '''
                 
 def logar(request):
     if request.method == 'GET':
