@@ -18,6 +18,20 @@
         margin-bottom: 20px;
       }
 
+
+      /* sobre e localização */
+
+    .localizacao .container{
+        flex-direction: column;
+    }
+
+
+    
+    .localizacao .mapa{
+        padding-top: 50%;
+    }
+  /* fim sobre e localização */
+
     
 }
 

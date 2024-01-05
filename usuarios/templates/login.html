@@ -25,22 +25,25 @@
         {% endif %}
         
         <div id="campoLogin" class="form d-flex flex-md-row flex-column">
-            <form style="box-shadow: 10px 4px 10px 0px rgba(0, 0, 0, 0.25);" action="{% url 'user_login' %}" method="POST"> {% csrf_token %}
+            <form action="{% url 'user_login' %}" method="POST"> {% csrf_token %}
             <div class="texto-inicial">
                 <h1>Acesse sua conta agora <br> mesmo</h1>
             </div>
           
-            <div  class="campos">
-                <div class="inputs">
+            <div  class="campo">
+
+                
+                <div class="input-wraper">
                     <img class="img" src="{% static 'usuarios/img/icone-usuario.svg' %}" alt="icone-usuario">
                     <input required id="usuario" type="text" name="usuario" placeholder="Usuário">
 
                 </div>
-                <div class="inputs">
+                <div class="input-wraper">
                     <img class="img"src="{% static 'usuarios/img/icone-senha.svg' %}" alt="icone-senha">
                     <input required id="senha" type="password" name="senha" placeholder="Senha">
-
                 </div>
+
+                
                 <div class="esqueci-senha text-center">
                     <a href="{% url 'password_reset' %}">Esqueci minha senha </a>
                 </div>
