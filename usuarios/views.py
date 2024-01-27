@@ -119,11 +119,6 @@ def cadastro(request):
         except IntegrityError as e:
             messages.add_message(request, constants.ERROR, f'{str(e)} Erro ao cadastrar o Usuário ou o Endereço!')
             return redirect('/usuarios/cadastro')
-<<<<<<< HEAD
-
-=======
-         
->>>>>>> e105013ddc4434db0c6b80cae17756ee708d53c0
                 
 def logar(request):
     if request.method == 'GET':
