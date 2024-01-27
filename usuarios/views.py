@@ -12,42 +12,6 @@ from usuarios.forms.cadastro_forms import UsuarioComplementoForm, UserAddressFor
 # Create your views here.
 def cadastro(request):
     if request.method == 'GET':
-        form_user = UsuarioComplementoForm()
-        form_endereco = UserAddressForm()
-        return render(request, 'cadastro.html', {'form_user': form_user, 'form_endereco': form_endereco})
-    
-    elif request.method == 'POST':
-        form_user = UsuarioComplementoForm(request.POST)
-        form_endereco = UserAddressForm(request.POST)
-
-        if form_user.is_valid() and form_endereco.is_valid():
-            usuario = form_user.save(commit=False)
-            endereco = form_endereco.save(commit=False)
-            usuario.save()
-            # endereco.'variavel que recebe chave estrangeira na classe UserAddress'
-            endereco.usuario_complemento = usuario
-            endereco.save()
-
-            messages.add_message(request, constants.SUCCESS, 'Usuário cadastrado com Sucesso!')
-            return redirect('/usuarios/user_login')
-        
-        else:
-            messages.add_message(request, constants.ERROR, 'Algo deu erro no preenchimento do formulario')
-            # cria o formulário com os dados da request como valores iniciais
-            form_user = UsuarioComplementoForm()
-            form_endereco = UserAddressForm()
-            return render(request, 'cadastro.html', {'form_user': form_user , 'form_endereco': form_endereco})
-        
-    
-  
-
-
-
-
-
-
-'''def cadastro(request):
-    if request.method == 'GET':
         return render(request, 'cadastro.html')
 
     elif request.method == 'POST':
@@ -116,7 +80,7 @@ def cadastro(request):
         except IntegrityError as e:
             messages.add_message(request, constants.ERROR, f'{str(e)} Erro ao cadastrar o Usuário ou o Endereço!')
             return redirect('/usuarios/cadastro')
-         '''
+
                 
 def logar(request):
     if request.method == 'GET':
